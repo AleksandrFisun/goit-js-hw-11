@@ -38,7 +38,7 @@ async function createListImg(query, page) {
   try {
     const markupCardImg = await fetchImages(query, page);
     // Кол-во картинок по запросу
-    if (page === 1) {
+    if (page === 1 && markupCardImg.totalHits !== 0) {
       Notiflix.Notify.info(
         `Hooray! We found ${markupCardImg.totalHits} images.`
       );
