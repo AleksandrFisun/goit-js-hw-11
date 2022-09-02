@@ -49,7 +49,7 @@ async function createListImg(query, page) {
     // вызов Notiflix
     notification(markupCardImg, page);
   } catch {
-    Notify.failure(
+    Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
@@ -75,16 +75,16 @@ const observer = new IntersectionObserver(updateList, option);
 //
 //
 function notification(obImg) {
+  console.log(page === obImg.totalHits / 40);
   if (obImg.total === 0) {
     return Notiflix.Notify.failure(
       'Sorry, there are no images matching your search query. Please try again.'
     );
   }
-  if (Math.round(page === obImg.total % 40)) {
+  if (Math.round(page === obImg.totalHits / 40)) {
     return Notiflix.Notify.info(
       "We're sorry, but you've reached the end of search results."
     );
   }
 }
 imageSearchBox.addEventListener('submit', searchImg);
-//
